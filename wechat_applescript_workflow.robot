@@ -5,19 +5,74 @@ Library           Process
 Library           OperatingSystem
 Library           Collections
 Library           DateTime
+Library           String
 
 *** Variables ***
 ${LOG_FILE}       ${CURDIR}/wechat_applescript_log.txt
 ${MESSAGE}        123    # 默认消息内容
 ${CONTACT}        文件传输助手    # 默认联系人
+${DEBUG_MODE}     True    # 开启更详细的日志记录
+${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
 
 *** Tasks ***
 完整微信AppleScript自动化工作流
     创建日志文件
-    执行基于AppleScript的微信自动化    ${CONTACT}    ${MESSAGE}
+    ${scripts_ok}=    检查并安装依赖
+    Run Keyword If    ${scripts_ok}    执行基于AppleScript的微信自动化    ${CONTACT}    ${MESSAGE}
+    ...    ELSE    Log To Console    \n无法执行自动化：预创建的脚本文件缺失或无执行权限\n
     记录完成信息
 
 *** Keywords ***
+检查并安装依赖
+    记录日志    检查自动化依赖工具
+    
+    # 检查cliclick是否已安装
+    ${cliclick_installed}=    Run Process    which cliclick    shell=True    stderr=STDOUT
+    ${has_cliclick}=    Run Keyword And Return Status    Should Not Be Empty    ${cliclick_installed.stdout}
+    
+    IF    not ${has_cliclick}
+        记录日志    cliclick未安装，推荐使用Homebrew安装此工具以提高鼠标操作的可靠性
+        Log To Console    \n推荐安装cliclick工具以提高脚本可靠性: brew install cliclick\n
+    ELSE
+        记录日志    已安装cliclick工具，可用于备选鼠标操作方案
+    END
+    
+    # 检查脚本文件是否存在
+    ${activate_script_exists}=    Run Keyword And Return Status    File Should Exist    ${SCRIPTS_DIR}/activate_wechat.applescript
+    ${search_script_exists}=    Run Keyword And Return Status    File Should Exist    ${SCRIPTS_DIR}/search_contact.applescript
+    ${send_script_exists}=    Run Keyword And Return Status    File Should Exist    ${SCRIPTS_DIR}/send_message.applescript
+    ${cliclick_script_exists}=    Run Keyword And Return Status    File Should Exist    ${SCRIPTS_DIR}/cliclick_focus_send.applescript
+    
+    ${all_scripts_exist}=    Evaluate    ${activate_script_exists} and ${search_script_exists} and ${send_script_exists} and ${cliclick_script_exists}
+    
+    # 检查脚本文件权限
+    ${scripts_executable}=    Set Variable    ${True}
+    IF    ${all_scripts_exist}
+        ${activate_perm}=    Run Process    test -x ${SCRIPTS_DIR}/activate_wechat.applescript && echo "OK" || echo "NotExecutable"    shell=True
+        ${search_perm}=    Run Process    test -x ${SCRIPTS_DIR}/search_contact.applescript && echo "OK" || echo "NotExecutable"    shell=True
+        ${send_perm}=    Run Process    test -x ${SCRIPTS_DIR}/send_message.applescript && echo "OK" || echo "NotExecutable"    shell=True
+        ${cliclick_perm}=    Run Process    test -x ${SCRIPTS_DIR}/cliclick_focus_send.applescript && echo "OK" || echo "NotExecutable"    shell=True
+        
+        ${scripts_executable}=    Evaluate    "${activate_perm.stdout}" == "OK" and "${search_perm.stdout}" == "OK" and "${send_perm.stdout}" == "OK" and "${cliclick_perm.stdout}" == "OK"
+        
+        IF    not ${scripts_executable}
+            记录日志    警告: 某些AppleScript文件没有执行权限，尝试添加执行权限
+            Run Process    chmod +x ${SCRIPTS_DIR}/*.applescript    shell=True
+            ${scripts_executable}=    Set Variable    ${True}
+            记录日志    已添加执行权限至所有脚本文件
+        END
+    END
+    
+    ${scripts_ok}=    Evaluate    ${all_scripts_exist} and ${scripts_executable}
+    IF    not ${scripts_ok}
+        记录日志    错误: 预创建的AppleScript文件不完整或没有执行权限
+        Log To Console    \n错误: 预创建的AppleScript文件不完整或没有执行权限，请确保所有脚本文件已正确创建在 ${SCRIPTS_DIR} 目录下\n
+    ELSE
+        记录日志    验证完成: 所有预创建的AppleScript文件都已存在且有执行权限
+    END
+    
+    RETURN    ${scripts_ok}
+    
 创建日志文件
     ${timestamp}=    Get Current Date    result_format=%Y-%m-%d %H:%M:%S
     Create File    ${LOG_FILE}    # 微信自动化工作流日志 (AppleScript版本)\n# 开始时间: ${timestamp}\n\n
@@ -35,233 +90,81 @@ ${CONTACT}        文件传输助手    # 默认联系人
     记录日志    联系人: "${target_contact}"
     记录日志    将发送的消息内容: "${custom_message}"
     
-    # 激活微信窗口
-    ${result1}=    Run Process    osascript    -e    tell application "WeChat" to activate
+    # 激活微信窗口 - 使用预创建的脚本
+    ${result1}=    Run Process    osascript    ${SCRIPTS_DIR}/activate_wechat.applescript    stderr=STDOUT
+    ${wechat_activated}=    Run Keyword And Return Status    Should Be Empty    ${result1.stderr}
+    
+    IF    not ${wechat_activated}
+        记录日志    错误: 无法激活微信窗口: ${result1.stderr}
+        Log To Console    \n错误: 无法激活微信窗口，请确认微信已安装并且可以手动启动\n
+        RETURN    ${False}
+    END
+    
     记录日志    AppleScript激活微信窗口结果: ${result1.stdout}
     
     # 等待窗口激活
     Sleep    1s
     记录日志    步骤2: 等待窗口激活完成
     
-    # 获取当前聊天联系人 - 使用AppleScript更准确地检测
-    ${get_current_contact_script}=    Catenate    SEPARATOR=\n
-    ...    tell application "System Events"
-    ...        tell process "WeChat"
-    ...            set windowTitle to name of front window
-    ...            log "当前窗口标题: " & windowTitle
-    ...            
-    ...            # 尝试检查当前聊天窗口的各种UI元素
-    ...            # 首先检查标题
-    ...            set foundContact to windowTitle contains "${target_contact}"
-    ...            
-    ...            # 尝试查找聊天窗口顶部的联系人名称文本
-    ...            if not foundContact then
-    ...                try
-    ...                    # 尝试获取聊天窗口中的联系人名称
-    ...                    set topUIElements to UI elements of front window
-    ...                    repeat with elem in topUIElements
-    ...                        try
-    ...                            set elemName to name of elem
-    ...                            log "检查UI元素: " & elemName
-    ...                            if elemName contains "${target_contact}" then
-    ...                                set foundContact to true
-    ...                                exit repeat
-    ...                            end if
-    ...                        on error
-    ...                            log "无法获取UI元素名称"
-    ...                        end try
-    ...                    end repeat
-    ...                on error
-    ...                    log "无法获取顶部UI元素"
-    ...                end try
-    ...            end if
-    ...            
-    ...            return "窗口标题: " & windowTitle & ", 是否找到联系人: " & foundContact
-    ...        end tell
-    ...    end tell
+    # 直接搜索联系人 - 使用预创建的脚本
+    记录日志    步骤3: 使用预创建脚本搜索联系人 "${target_contact}"
+    ${result2}=    Run Process    osascript    ${SCRIPTS_DIR}/search_contact.applescript    ${target_contact}    stderr=STDOUT
+    ${contact_found}=    Run Keyword And Return Status    Should Be Empty    ${result2.stderr}
     
-    ${result_contact}=    Run Process    osascript    -e    ${get_current_contact_script}    stderr=STDOUT
-    记录日志    当前聊天窗口检查: ${result_contact.stdout}
+    IF    not ${contact_found}
+        记录日志    错误: 搜索联系人失败: ${result2.stderr}
+        Log To Console    \n错误: 无法搜索或找到联系人 "${target_contact}"\n
+        RETURN    ${False}
+    END
     
-    # 检查是否已经在正确的聊天窗口
-    ${is_correct_window}=    Set Variable    ${FALSE}
-    记录日志    初始化窗口检查状态: is_correct_window = ${is_correct_window}
-    
-    # 检查结果中是否包含"是否找到联系人: true"
-    ${status}=    Run Keyword And Return Status    Should Contain    ${result_contact.stdout}    是否找到联系人: true
-    记录日志    窗口联系人检查结果: status = ${status}, 寻找的联系人: "${target_contact}"
-    
-    # 基于检查结果设置窗口状态
-    ${is_correct_window}=    Set Variable    ${status}
-    记录日志    最终窗口检查状态: is_correct_window = ${is_correct_window}
-    
-    # 如果不在正确的聊天窗口，则搜索联系人
-    Run Keyword If    not ${is_correct_window}    记录日志    需要搜索联系人: 当前窗口不是目标联系人窗口
-    Run Keyword If    ${is_correct_window}    记录日志    无需搜索联系人: 当前已经在目标联系人窗口
-    
-    Run Keyword If    not ${is_correct_window}    搜索并选择联系人    ${target_contact}
+    记录日志    搜索联系人脚本执行结果: ${result2.stdout}
     
     # 等待聊天窗口加载完成
-    Sleep    1s
-    记录日志    步骤3: 聊天窗口已准备就绪
+    Sleep    3s
+    记录日志    步骤4: 聊天窗口已加载，准备输入消息
+
+    # 检查是否安装了cliclick工具，优先使用cliclick
+    记录日志    检查是否可以使用cliclick工具
+    ${cliclick_check}=    Run Process    which cliclick    shell=true
+    ${has_cliclick}=    Run Keyword And Return Status    Should Not Be Empty    ${cliclick_check.stdout}
     
-    # 现在输入框应该有焦点，之前的联系人搜索可能导致窗口状态不稳定，点击输入区域确保焦点
-    ${focus_input_script}=    Catenate    SEPARATOR=\n
-    ...    tell application "System Events"
-    ...        tell process "WeChat"
-    ...            # 找到消息输入区域并点击
-    ...            # 微信的输入区域通常是底部的文本区域
-    ...            # 这里尝试点击窗口底部区域，应该会点击到输入框
-    ...            set inputPosition to position of front window
-    ...            set inputSize to size of front window
-    ...            set clickX to inputPosition's item 1 + (inputSize's item 1 div 2)
-    ...            set clickY to inputPosition's item 2 + inputSize's item 2 - 100
-    ...            click at {clickX, clickY}
-    ...        end tell
-    ...    end tell
+    ${send_success}=    Set Variable    ${False}
+    IF    ${has_cliclick}
+        记录日志    找到cliclick工具，使用cliclick专用脚本发送消息
+        
+        # 使用cliclick专用脚本
+        ${result3}=    Run Process    osascript    ${SCRIPTS_DIR}/cliclick_focus_send.applescript    ${custom_message}    stderr=STDOUT
+        ${send_success}=    Run Keyword And Return Status    Should Be Empty    ${result3.stderr}
+        
+        记录日志    cliclick专用脚本执行结果: ${result3.stdout}
+        IF    ${send_success}
+            记录日志    使用cliclick获取焦点后通过AppleScript完成消息发送
+            RETURN    ${True}
+        ELSE
+            记录日志    警告: cliclick专用脚本执行出现错误: ${result3.stderr}
+            记录日志    尝试使用纯AppleScript方案作为备选
+        END
+    ELSE
+        记录日志    未找到cliclick工具，使用纯AppleScript方案
+    END
     
-    ${result_focus}=    Run Process    osascript    -e    ${focus_input_script}
-    记录日志    确保输入框获得焦点: ${result_focus.stdout}
-    Sleep    0.5s
+    # 使用纯AppleScript方案 - 使用预创建的脚本
+    ${result4}=    Run Process    osascript    ${SCRIPTS_DIR}/send_message.applescript    ${custom_message}    stderr=STDOUT
+    ${send_success}=    Run Keyword And Return Status    Should Be Empty    ${result4.stderr}
     
-    # 使用剪贴板方法输入消息文本
-    记录日志    步骤4: 准备输入消息文本
-    
-    # 使用AppleScript将消息文本复制到剪贴板
-    ${clipboard_script}=    Catenate    SEPARATOR=\n
-    ...    set the clipboard to "${custom_message}"
-    
-    ${result2}=    Run Process    osascript    -e    ${clipboard_script}
-    记录日志    将消息复制到剪贴板: ${result2.stdout}
-    
-    # 粘贴文本 (使用Command+V)
-    ${result3}=    Run Process    osascript    -e    tell application "System Events" to keystroke "v" using command down
-    记录日志    粘贴消息文本结果: ${result3.stdout}
-    
-    # 按回车发送消息
-    记录日志    步骤5: 按回车键发送消息
-    ${result4}=    Run Process    osascript    -e    tell application "System Events" to key code 36
-    记录日志    发送消息结果: ${result4.stdout}
-    
-    # 综合自动化脚本
-    记录日志    步骤6: 执行备用综合自动化脚本
-    ${applescript}=    Catenate    SEPARATOR=\n
-    ...    tell application "WeChat" to activate
-    ...    delay 1
-    ...    -- 检查当前是否已在目标联系人的窗口
-    ...    set isTargetWindow to false
-    ...    tell application "System Events"
-    ...        tell process "WeChat"
-    ...            set windowTitle to name of front window
-    ...            log "DEBUG: 当前窗口标题: " & windowTitle
-    ...            log "DEBUG: 目标联系人: ${target_contact}"
-    ...            
-    ...            -- 首先检查窗口标题
-    ...            if windowTitle contains "${target_contact}" then
-    ...                set isTargetWindow to true
-    ...            end if
-    ...            
-    ...            -- 如果窗口标题未找到，尝试检查其他UI元素
-    ...            if not isTargetWindow then
-    ...                try
-    ...                    set topElements to UI elements of front window
-    ...                    repeat with elem in topElements
-    ...                        try
-    ...                            set elemName to name of elem
-    ...                            log "DEBUG: 检查UI元素: " & elemName
-    ...                            if elemName contains "${target_contact}" then
-    ...                                set isTargetWindow to true
-    ...                                exit repeat
-    ...                            end if
-    ...                        on error
-    ...                            log "DEBUG: 无法检查UI元素"
-    ...                        end try
-    ...                    end repeat
-    ...                on error
-    ...                    log "DEBUG: 无法获取UI元素"
-    ...                end try
-    ...            end if
-    ...            
-    ...            log "DEBUG: 是否在目标窗口: " & isTargetWindow
-    ...        end tell
-    ...    end tell
-    ...    
-    ...    -- 如果不在目标窗口，则搜索联系人
-    ...    if not isTargetWindow then
-    ...        log "DEBUG: 需要搜索联系人"
-    ...        tell application "System Events"
-    ...            keystroke "f" using command down
-    ...            delay 0.5
-    ...        end tell
-    ...        set the clipboard to "${target_contact}"
-    ...        tell application "System Events"
-    ...            keystroke "v" using command down
-    ...            delay 1
-    ...            key code 36  -- 选择联系人
-    ...            delay 1
-    ...        end tell
-    ...    else
-    ...        log "DEBUG: 已在目标窗口，无需搜索联系人"
-    ...    end if
-    ...    
-    ...    -- 点击输入区域确保焦点
-    ...    tell application "System Events"
-    ...        tell process "WeChat"
-    ...            set inputPosition to position of front window
-    ...            set inputSize to size of front window
-    ...            set clickX to inputPosition's item 1 + (inputSize's item 1 div 2)
-    ...            set clickY to inputPosition's item 2 + inputSize's item 2 - 100
-    ...            click at {clickX, clickY}
-    ...        end tell
-    ...    end tell
-    ...    delay 0.5
-    ...    
-    ...    -- 输入消息
-    ...    set the clipboard to "${custom_message}"
-    ...    tell application "System Events"
-    ...        keystroke "v" using command down
-    ...        delay 0.5
-    ...        key code 36  -- 发送消息
-    ...    end tell
-    
-    Create File    ${CURDIR}/wechat_script.applescript    ${applescript}
-    记录日志    创建了综合自动化AppleScript文件
-    
-    ${result5}=    Run Process    osascript    ${CURDIR}/wechat_script.applescript    stderr=STDOUT
-    记录日志    综合自动化脚本执行结果: ${result5.stdout}
-    记录日志    综合自动化脚本错误输出: ${result5.stderr}
+    IF    ${send_success}
+        记录日志    纯AppleScript消息发送脚本执行结果: ${result4.stdout}
+        记录日志    消息发送完成
+        RETURN    ${True}
+    ELSE
+        记录日志    错误: 所有消息发送方法都失败: ${result4.stderr}
+        Log To Console    \n错误: 无法发送消息，请检查微信窗口状态\n
+        RETURN    ${False}
+    END
 
 搜索并选择联系人
     [Arguments]    ${target_contact}
-    记录日志    开始搜索联系人: "${target_contact}"
-    
-    # 搜索联系人 (使用Command+F快捷键)
-    ${result1}=    Run Process    osascript    -e    tell application "System Events" to keystroke "f" using command down
-    记录日志    打开搜索框结果: ${result1.stdout}
-    Sleep    0.5s
-    
-    # 使用剪贴板方法输入联系人名称
-    ${clipboard_script}=    Catenate    SEPARATOR=\n
-    ...    set the clipboard to "${target_contact}"
-    
-    ${result2}=    Run Process    osascript    -e    ${clipboard_script}
-    记录日志    将联系人名称复制到剪贴板: ${result2.stdout}
-    
-    # 粘贴联系人名称 (使用Command+V)
-    ${result3}=    Run Process    osascript    -e    tell application "System Events" to keystroke "v" using command down
-    记录日志    粘贴联系人名称结果: ${result3.stdout}
-    
-    # 等待搜索结果
-    Sleep    1s
-    记录日志    等待搜索结果...
-    
-    # 按回车选择第一个搜索结果
-    ${result4}=    Run Process    osascript    -e    tell application "System Events" to key code 36
-    记录日志    选择联系人结果: ${result4.stdout}
-    
-    # 等待聊天窗口加载
-    Sleep    1s
-    记录日志    聊天窗口加载完成
+    记录日志    已移除此关键字，现在直接使用预创建的 search_contact.applescript 脚本
 
 记录完成信息
     ${timestamp}=    Get Current Date    result_format=%Y-%m-%d %H:%M:%S
