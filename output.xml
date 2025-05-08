@@ -1,967 +1,967 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.13.2 on darwin)" generated="2025-05-08T18:52:16.539025" rpa="true" schemaversion="5">
+<robot generator="Robot 7.2.2 (Python 3.13.2 on darwin)" generated="2025-05-08T19:06:03.276333" rpa="true" schemaversion="5">
 <suite id="s1" name="Wechat Applescript Workflow" source="/Users/zzy/hope/rpa/wechat_applescript_workflow.robot">
 <test id="s1-t1" name="完整微信AppleScript自动化工作流" line="18">
 <kw name="创建日志文件">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.611434" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.336653" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.611106" elapsed="0.000376"/>
+<status status="PASS" start="2025-05-08T19:06:03.336345" elapsed="0.000354"/>
 </kw>
 <kw name="Create File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.612082" level="INFO" html="true">Created file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.337284" level="INFO" html="true">Created file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <doc>Creates a file with the given content and encoding.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.611653" elapsed="0.000512"/>
+<status status="PASS" start="2025-05-08T19:06:03.336857" elapsed="0.000505"/>
 </kw>
-<status status="PASS" start="2025-05-08T18:52:16.610297" elapsed="0.001958"/>
+<status status="PASS" start="2025-05-08T19:06:03.335543" elapsed="0.001909"/>
 </kw>
 <kw name="检查并安装依赖">
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.613891" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.338725" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.613636" elapsed="0.000300"/>
+<status status="PASS" start="2025-05-08T19:06:03.338500" elapsed="0.000266"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.614336" level="INFO">${log_entry} = [2025-05-08 18:52:16] 检查自动化依赖工具</msg>
+<msg time="2025-05-08T19:06:03.339140" level="INFO">${log_entry} = [2025-05-08 19:06:03] 检查自动化依赖工具</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.614064" elapsed="0.000316"/>
+<status status="PASS" start="2025-05-08T19:06:03.338885" elapsed="0.000295"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.614991" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.339829" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.614504" elapsed="0.000566"/>
+<status status="PASS" start="2025-05-08T19:06:03.339364" elapsed="0.000540"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.615198" elapsed="0.000200"/>
+<status status="PASS" start="2025-05-08T19:06:03.340030" elapsed="0.000192"/>
 </kw>
 <arg>检查自动化依赖工具</arg>
-<status status="PASS" start="2025-05-08T18:52:16.613337" elapsed="0.002144"/>
+<status status="PASS" start="2025-05-08T19:06:03.338224" elapsed="0.002077"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:16.615818" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:03.340621" level="INFO">Starting process:
 which cliclick</msg>
-<msg time="2025-05-08T18:52:16.621898" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:16.633121" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:16.633495" level="INFO">${cliclick_installed} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:03.345897" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:03.355405" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:03.355768" level="INFO">${cliclick_installed} = &lt;result object with rc 0&gt;</msg>
 <var>${cliclick_installed}</var>
 <arg>which cliclick</arg>
 <arg>shell=True</arg>
 <arg>stderr=STDOUT</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.615602" elapsed="0.017952"/>
+<status status="PASS" start="2025-05-08T19:06:03.340419" elapsed="0.015397"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Should Not Be Empty" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.635145" level="INFO">Length is 23.</msg>
+<msg time="2025-05-08T19:06:03.357344" level="INFO">Length is 23.</msg>
 <arg>${cliclick_installed.stdout}</arg>
 <doc>Verifies that the given item is not empty.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.634412" elapsed="0.000810"/>
+<status status="PASS" start="2025-05-08T19:06:03.356636" elapsed="0.000771"/>
 </kw>
-<msg time="2025-05-08T18:52:16.635330" level="INFO">${has_cliclick} = True</msg>
+<msg time="2025-05-08T19:06:03.357512" level="INFO">${has_cliclick} = True</msg>
 <var>${has_cliclick}</var>
 <arg>Should Not Be Empty</arg>
 <arg>${cliclick_installed.stdout}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.634038" elapsed="0.001324"/>
+<status status="PASS" start="2025-05-08T19:06:03.356272" elapsed="0.001270"/>
 </kw>
 <if>
 <branch type="IF" condition="not ${has_cliclick}">
 <kw name="记录日志">
 <arg>cliclick未安装，推荐使用Homebrew安装此工具以提高鼠标操作的可靠性</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:16.636034" elapsed="0.000037"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.358113" elapsed="0.000031"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>\n推荐安装cliclick工具以提高脚本可靠性: brew install cliclick\n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:16.636345" elapsed="0.000045"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.358267" elapsed="0.000025"/>
 </kw>
-<status status="NOT RUN" start="2025-05-08T18:52:16.635552" elapsed="0.000888"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.357728" elapsed="0.000604"/>
 </branch>
 <branch type="ELSE">
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.637406" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.359528" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.637086" elapsed="0.000359"/>
+<status status="PASS" start="2025-05-08T19:06:03.359185" elapsed="0.000383"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.637845" level="INFO">${log_entry} = [2025-05-08 18:52:16] 已安装cliclick工具，可用于备选鼠标操作方案</msg>
+<msg time="2025-05-08T19:06:03.359972" level="INFO">${log_entry} = [2025-05-08 19:06:03] 已安装cliclick工具，可用于备选鼠标操作方案</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.637580" elapsed="0.000301"/>
+<status status="PASS" start="2025-05-08T19:06:03.359705" elapsed="0.000303"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.638514" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.360633" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.638011" elapsed="0.000585"/>
+<status status="PASS" start="2025-05-08T19:06:03.360136" elapsed="0.000576"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.638719" elapsed="0.000313"/>
+<status status="PASS" start="2025-05-08T19:06:03.360838" elapsed="0.000232"/>
 </kw>
 <arg>已安装cliclick工具，可用于备选鼠标操作方案</arg>
-<status status="PASS" start="2025-05-08T18:52:16.636670" elapsed="0.002484"/>
+<status status="PASS" start="2025-05-08T19:06:03.358580" elapsed="0.002571"/>
 </kw>
-<status status="PASS" start="2025-05-08T18:52:16.636492" elapsed="0.002714"/>
+<status status="PASS" start="2025-05-08T19:06:03.358385" elapsed="0.002804"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:16.635481" elapsed="0.003772"/>
+<status status="PASS" start="2025-05-08T19:06:03.357658" elapsed="0.003570"/>
 </if>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="File Should Exist" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.639993" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/activate_wechat.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/activate_wechat.applescript&lt;/a&gt;' exists.</msg>
+<msg time="2025-05-08T19:06:03.361759" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/activate_wechat.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/activate_wechat.applescript&lt;/a&gt;' exists.</msg>
 <arg>${SCRIPTS_DIR}/activate_wechat.applescript</arg>
 <doc>Fails unless the given ``path`` points to an existing file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.639616" elapsed="0.000456"/>
+<status status="PASS" start="2025-05-08T19:06:03.361555" elapsed="0.000275"/>
 </kw>
-<msg time="2025-05-08T18:52:16.640178" level="INFO">${activate_script_exists} = True</msg>
+<msg time="2025-05-08T19:06:03.361928" level="INFO">${activate_script_exists} = True</msg>
 <var>${activate_script_exists}</var>
 <arg>File Should Exist</arg>
 <arg>${SCRIPTS_DIR}/activate_wechat.applescript</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.639397" elapsed="0.000814"/>
+<status status="PASS" start="2025-05-08T19:06:03.361369" elapsed="0.000590"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="File Should Exist" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.640712" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/search_contact.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/search_contact.applescript&lt;/a&gt;' exists.</msg>
+<msg time="2025-05-08T19:06:03.362421" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/search_contact.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/search_contact.applescript&lt;/a&gt;' exists.</msg>
 <arg>${SCRIPTS_DIR}/search_contact.applescript</arg>
 <doc>Fails unless the given ``path`` points to an existing file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.640524" elapsed="0.000252"/>
+<status status="PASS" start="2025-05-08T19:06:03.362243" elapsed="0.000243"/>
 </kw>
-<msg time="2025-05-08T18:52:16.640989" level="INFO">${search_script_exists} = True</msg>
+<msg time="2025-05-08T19:06:03.362677" level="INFO">${search_script_exists} = True</msg>
 <var>${search_script_exists}</var>
 <arg>File Should Exist</arg>
 <arg>${SCRIPTS_DIR}/search_contact.applescript</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.640355" elapsed="0.000666"/>
+<status status="PASS" start="2025-05-08T19:06:03.362084" elapsed="0.000625"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="File Should Exist" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.641487" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/send_message.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/send_message.applescript&lt;/a&gt;' exists.</msg>
+<msg time="2025-05-08T19:06:03.363170" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/send_message.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/send_message.applescript&lt;/a&gt;' exists.</msg>
 <arg>${SCRIPTS_DIR}/send_message.applescript</arg>
 <doc>Fails unless the given ``path`` points to an existing file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.641307" elapsed="0.000243"/>
+<status status="PASS" start="2025-05-08T19:06:03.362994" elapsed="0.000241"/>
 </kw>
-<msg time="2025-05-08T18:52:16.641643" level="INFO">${send_script_exists} = True</msg>
+<msg time="2025-05-08T19:06:03.363328" level="INFO">${send_script_exists} = True</msg>
 <var>${send_script_exists}</var>
 <arg>File Should Exist</arg>
 <arg>${SCRIPTS_DIR}/send_message.applescript</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.641150" elapsed="0.000523"/>
+<status status="PASS" start="2025-05-08T19:06:03.362837" elapsed="0.000520"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="File Should Exist" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.642137" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript&lt;/a&gt;' exists.</msg>
+<msg time="2025-05-08T19:06:03.363815" level="INFO" html="true">File '&lt;a href="file:///Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript"&gt;/Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript&lt;/a&gt;' exists.</msg>
 <arg>${SCRIPTS_DIR}/cliclick_focus_send.applescript</arg>
 <doc>Fails unless the given ``path`` points to an existing file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.641966" elapsed="0.000235"/>
+<status status="PASS" start="2025-05-08T19:06:03.363644" elapsed="0.000241"/>
 </kw>
-<msg time="2025-05-08T18:52:16.642294" level="INFO">${cliclick_script_exists} = True</msg>
+<msg time="2025-05-08T19:06:03.363978" level="INFO">${cliclick_script_exists} = True</msg>
 <var>${cliclick_script_exists}</var>
 <arg>File Should Exist</arg>
 <arg>${SCRIPTS_DIR}/cliclick_focus_send.applescript</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.641810" elapsed="0.000513"/>
+<status status="PASS" start="2025-05-08T19:06:03.363491" elapsed="0.000521"/>
 </kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.643008" level="INFO">${all_scripts_exist} = True</msg>
+<msg time="2025-05-08T19:06:03.364505" level="INFO">${all_scripts_exist} = True</msg>
 <var>${all_scripts_exist}</var>
 <arg>${activate_script_exists} and ${search_script_exists} and ${send_script_exists} and ${cliclick_script_exists}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.642467" elapsed="0.000588"/>
+<status status="PASS" start="2025-05-08T19:06:03.364145" elapsed="0.000394"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.643403" level="INFO">${scripts_executable} = True</msg>
+<msg time="2025-05-08T19:06:03.364916" level="INFO">${scripts_executable} = True</msg>
 <var>${scripts_executable}</var>
 <arg>${True}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.643202" elapsed="0.000267"/>
+<status status="PASS" start="2025-05-08T19:06:03.364723" elapsed="0.000226"/>
 </kw>
 <if>
 <branch type="IF" condition="${all_scripts_exist}">
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:16.644278" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:03.365490" level="INFO">Starting process:
 test -x /Users/zzy/hope/rpa/scripts/wechat/activate_wechat.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</msg>
-<msg time="2025-05-08T18:52:16.650737" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:16.659005" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:16.659389" level="INFO">${activate_perm} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:03.372906" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:03.380113" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:03.380473" level="INFO">${activate_perm} = &lt;result object with rc 0&gt;</msg>
 <var>${activate_perm}</var>
 <arg>test -x ${SCRIPTS_DIR}/activate_wechat.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</arg>
 <arg>shell=True</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.643840" elapsed="0.015605"/>
+<status status="PASS" start="2025-05-08T19:06:03.365218" elapsed="0.015302"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:16.660496" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:03.381496" level="INFO">Starting process:
 test -x /Users/zzy/hope/rpa/scripts/wechat/search_contact.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</msg>
-<msg time="2025-05-08T18:52:16.666869" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:16.675020" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:16.675396" level="INFO">${search_perm} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:03.387570" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:03.394441" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:03.394807" level="INFO">${search_perm} = &lt;result object with rc 0&gt;</msg>
 <var>${search_perm}</var>
 <arg>test -x ${SCRIPTS_DIR}/search_contact.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</arg>
 <arg>shell=True</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.659945" elapsed="0.015502"/>
+<status status="PASS" start="2025-05-08T19:06:03.380997" elapsed="0.013859"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:16.676579" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:03.395829" level="INFO">Starting process:
 test -x /Users/zzy/hope/rpa/scripts/wechat/send_message.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</msg>
-<msg time="2025-05-08T18:52:16.682283" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:16.689141" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:16.689502" level="INFO">${send_perm} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:03.401113" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:03.408228" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:03.408579" level="INFO">${send_perm} = &lt;result object with rc 0&gt;</msg>
 <var>${send_perm}</var>
 <arg>test -x ${SCRIPTS_DIR}/send_message.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</arg>
 <arg>shell=True</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.675964" elapsed="0.013589"/>
+<status status="PASS" start="2025-05-08T19:06:03.395356" elapsed="0.013272"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:16.691111" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:03.410176" level="INFO">Starting process:
 test -x /Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</msg>
-<msg time="2025-05-08T18:52:16.696748" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:16.703137" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:16.703526" level="INFO">${cliclick_perm} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:03.415108" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:03.421479" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:03.421851" level="INFO">${cliclick_perm} = &lt;result object with rc 0&gt;</msg>
 <var>${cliclick_perm}</var>
 <arg>test -x ${SCRIPTS_DIR}/cliclick_focus_send.applescript &amp;&amp; echo "OK" || echo "NotExecutable"</arg>
 <arg>shell=True</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.690018" elapsed="0.013562"/>
+<status status="PASS" start="2025-05-08T19:06:03.409092" elapsed="0.012808"/>
 </kw>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.706673" level="INFO">${scripts_executable} = True</msg>
+<msg time="2025-05-08T19:06:03.424936" level="INFO">${scripts_executable} = True</msg>
 <var>${scripts_executable}</var>
 <arg>"${activate_perm.stdout}" == "OK" and "${search_perm.stdout}" == "OK" and "${send_perm.stdout}" == "OK" and "${cliclick_perm.stdout}" == "OK"</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.704056" elapsed="0.002657"/>
+<status status="PASS" start="2025-05-08T19:06:03.422373" elapsed="0.002605"/>
 </kw>
 <if>
 <branch type="IF" condition="not ${scripts_executable}">
 <kw name="记录日志">
 <arg>警告: 某些AppleScript文件没有执行权限，尝试添加执行权限</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:16.707304" elapsed="0.000037"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.425576" elapsed="0.000038"/>
 </kw>
 <kw name="Run Process" owner="Process">
 <arg>chmod +x ${SCRIPTS_DIR}/*.applescript</arg>
 <arg>shell=True</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:16.707486" elapsed="0.000028"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.425759" elapsed="0.000028"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
 <var>${scripts_executable}</var>
 <arg>${True}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:16.707639" elapsed="0.000026"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.425911" elapsed="0.000025"/>
 </kw>
 <kw name="记录日志">
 <arg>已添加执行权限至所有脚本文件</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:16.707820" elapsed="0.000033"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.426085" elapsed="0.000032"/>
 </kw>
-<status status="NOT RUN" start="2025-05-08T18:52:16.706903" elapsed="0.000992"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.425161" elapsed="0.000997"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:16.706838" elapsed="0.001096"/>
+<status status="PASS" start="2025-05-08T19:06:03.425093" elapsed="0.001110"/>
 </if>
-<status status="PASS" start="2025-05-08T18:52:16.643595" elapsed="0.064377"/>
+<status status="PASS" start="2025-05-08T19:06:03.365049" elapsed="0.061191"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:16.643555" elapsed="0.064448"/>
+<status status="PASS" start="2025-05-08T19:06:03.365020" elapsed="0.061253"/>
 </if>
 <kw name="Evaluate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.708424" level="INFO">${scripts_ok} = True</msg>
+<msg time="2025-05-08T19:06:03.426689" level="INFO">${scripts_ok} = True</msg>
 <var>${scripts_ok}</var>
 <arg>${all_scripts_exist} and ${scripts_executable}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.708121" elapsed="0.000430"/>
+<status status="PASS" start="2025-05-08T19:06:03.426389" elapsed="0.000428"/>
 </kw>
 <if>
 <branch type="IF" condition="not ${scripts_ok}">
 <kw name="记录日志">
 <arg>错误: 预创建的AppleScript文件不完整或没有执行权限</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:16.709043" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.427149" elapsed="0.000029"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>\n错误: 预创建的AppleScript文件不完整或没有执行权限，请确保所有脚本文件已正确创建在 ${SCRIPTS_DIR} 目录下\n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:16.709210" elapsed="0.000028"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.427308" elapsed="0.000026"/>
 </kw>
-<status status="NOT RUN" start="2025-05-08T18:52:16.708667" elapsed="0.000617"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.426915" elapsed="0.000464"/>
 </branch>
 <branch type="ELSE">
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.710170" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.428244" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.709845" elapsed="0.000363"/>
+<status status="PASS" start="2025-05-08T19:06:03.427925" elapsed="0.000355"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.710596" level="INFO">${log_entry} = [2025-05-08 18:52:16] 验证完成: 所有预创建的AppleScript文件都已存在且有执行权限</msg>
+<msg time="2025-05-08T19:06:03.428670" level="INFO">${log_entry} = [2025-05-08 19:06:03] 验证完成: 所有预创建的AppleScript文件都已存在且有执行权限</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.710339" elapsed="0.000297"/>
+<status status="PASS" start="2025-05-08T19:06:03.428412" elapsed="0.000293"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.711231" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.429322" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.710762" elapsed="0.000545"/>
+<status status="PASS" start="2025-05-08T19:06:03.428830" elapsed="0.000569"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.711432" elapsed="0.000221"/>
+<status status="PASS" start="2025-05-08T19:06:03.429524" elapsed="0.000228"/>
 </kw>
 <arg>验证完成: 所有预创建的AppleScript文件都已存在且有执行权限</arg>
-<status status="PASS" start="2025-05-08T18:52:16.709464" elapsed="0.002272"/>
+<status status="PASS" start="2025-05-08T19:06:03.427554" elapsed="0.002283"/>
 </kw>
-<status status="PASS" start="2025-05-08T18:52:16.709319" elapsed="0.002456"/>
+<status status="PASS" start="2025-05-08T19:06:03.427414" elapsed="0.002462"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:16.708624" elapsed="0.003187"/>
+<status status="PASS" start="2025-05-08T19:06:03.426889" elapsed="0.003021"/>
 </if>
 <return>
 <value>${scripts_ok}</value>
-<status status="PASS" start="2025-05-08T18:52:16.711884" elapsed="0.000107"/>
+<status status="PASS" start="2025-05-08T19:06:03.429981" elapsed="0.000106"/>
 </return>
-<msg time="2025-05-08T18:52:16.712172" level="INFO">${scripts_ok} = True</msg>
+<msg time="2025-05-08T19:06:03.430264" level="INFO">${scripts_ok} = True</msg>
 <var>${scripts_ok}</var>
-<status status="PASS" start="2025-05-08T18:52:16.612915" elapsed="0.099290"/>
+<status status="PASS" start="2025-05-08T19:06:03.337926" elapsed="0.092370"/>
 </kw>
 <kw name="Run Keyword If" owner="BuiltIn">
 <kw name="执行基于AppleScript的微信自动化">
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.714051" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.432154" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.713832" elapsed="0.000258"/>
+<status status="PASS" start="2025-05-08T19:06:03.431927" elapsed="0.000264"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.714436" level="INFO">${log_entry} = [2025-05-08 18:52:16] 步骤1: 使用AppleScript激活微信窗口</msg>
+<msg time="2025-05-08T19:06:03.432541" level="INFO">${log_entry} = [2025-05-08 19:06:03] 步骤1: 使用AppleScript激活微信窗口</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.714209" elapsed="0.000261"/>
+<status status="PASS" start="2025-05-08T19:06:03.432311" elapsed="0.000265"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.714953" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.433101" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.714585" elapsed="0.000446"/>
+<status status="PASS" start="2025-05-08T19:06:03.432693" elapsed="0.000478"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.715153" elapsed="0.000183"/>
+<status status="PASS" start="2025-05-08T19:06:03.433295" elapsed="0.000187"/>
 </kw>
 <arg>步骤1: 使用AppleScript激活微信窗口</arg>
-<status status="PASS" start="2025-05-08T18:52:16.713564" elapsed="0.001849"/>
+<status status="PASS" start="2025-05-08T19:06:03.431654" elapsed="0.001902"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.716073" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.434246" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.715871" elapsed="0.000236"/>
+<status status="PASS" start="2025-05-08T19:06:03.434035" elapsed="0.000245"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.716453" level="INFO">${log_entry} = [2025-05-08 18:52:16] 联系人: "文件传输助手"</msg>
+<msg time="2025-05-08T19:06:03.434631" level="INFO">${log_entry} = [2025-05-08 19:06:03] 联系人: "文件传输助手"</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.716230" elapsed="0.000257"/>
+<status status="PASS" start="2025-05-08T19:06:03.434396" elapsed="0.000270"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.716929" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.435121" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.716602" elapsed="0.000413"/>
+<status status="PASS" start="2025-05-08T19:06:03.434784" elapsed="0.000407"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.717255" elapsed="0.000192"/>
+<status status="PASS" start="2025-05-08T19:06:03.435315" elapsed="0.000183"/>
 </kw>
 <arg>联系人: "${target_contact}"</arg>
-<status status="PASS" start="2025-05-08T18:52:16.715559" elapsed="0.001970"/>
+<status status="PASS" start="2025-05-08T19:06:03.433713" elapsed="0.001859"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.718220" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.436402" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.718004" elapsed="0.000256"/>
+<status status="PASS" start="2025-05-08T19:06:03.436178" elapsed="0.000275"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.718608" level="INFO">${log_entry} = [2025-05-08 18:52:16] 将发送的消息内容: "你好，这是测试消息265"</msg>
+<msg time="2025-05-08T19:06:03.436801" level="INFO">${log_entry} = [2025-05-08 19:06:03] 将发送的消息内容: "你好，这是测试消息268"</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.718379" elapsed="0.000263"/>
+<status status="PASS" start="2025-05-08T19:06:03.436572" elapsed="0.000263"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.719118" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.437309" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.718758" elapsed="0.000431"/>
+<status status="PASS" start="2025-05-08T19:06:03.436953" elapsed="0.000425"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.719314" elapsed="0.000184"/>
+<status status="PASS" start="2025-05-08T19:06:03.437507" elapsed="0.000183"/>
 </kw>
 <arg>将发送的消息内容: "${custom_message}"</arg>
-<status status="PASS" start="2025-05-08T18:52:16.717679" elapsed="0.001899"/>
+<status status="PASS" start="2025-05-08T19:06:03.435843" elapsed="0.001925"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:16.719982" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:03.438166" level="INFO">Starting process:
 osascript /Users/zzy/hope/rpa/scripts/wechat/activate_wechat.applescript</msg>
-<msg time="2025-05-08T18:52:16.726619" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:16.943477" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:16.944096" level="INFO">${result1} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:03.444159" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:03.681981" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:03.683558" level="INFO">${result1} = &lt;result object with rc 0&gt;</msg>
 <var>${result1}</var>
 <arg>osascript</arg>
 <arg>${SCRIPTS_DIR}/activate_wechat.applescript</arg>
 <arg>stderr=STDOUT</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.719697" elapsed="0.224499"/>
+<status status="PASS" start="2025-05-08T19:06:03.437890" elapsed="0.245783"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Should Be Empty" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.947546" level="INFO">Length is 0.</msg>
+<msg time="2025-05-08T19:06:03.698995" level="INFO">Length is 0.</msg>
 <arg>${result1.stderr}</arg>
 <doc>Verifies that the given item is empty.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.945989" elapsed="0.001677"/>
+<status status="PASS" start="2025-05-08T19:06:03.689456" elapsed="0.009690"/>
 </kw>
-<msg time="2025-05-08T18:52:16.947851" level="INFO">${wechat_activated} = True</msg>
+<msg time="2025-05-08T19:06:03.699338" level="INFO">${wechat_activated} = True</msg>
 <var>${wechat_activated}</var>
 <arg>Should Be Empty</arg>
 <arg>${result1.stderr}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.945232" elapsed="0.002671"/>
+<status status="PASS" start="2025-05-08T19:06:03.688501" elapsed="0.010880"/>
 </kw>
 <if>
 <branch type="IF" condition="not ${wechat_activated}">
 <kw name="记录日志">
 <arg>错误: 无法激活微信窗口: ${result1.stderr}</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:16.948824" elapsed="0.000050"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.700961" elapsed="0.000114"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>\n错误: 无法激活微信窗口，请确认微信已安装并且可以手动启动\n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:16.949104" elapsed="0.000081"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.701390" elapsed="0.000050"/>
 </kw>
 <return>
 <value>${False}</value>
-<status status="NOT RUN" start="2025-05-08T18:52:16.949313" elapsed="0.000041"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.701573" elapsed="0.000052"/>
 </return>
-<status status="NOT RUN" start="2025-05-08T18:52:16.948301" elapsed="0.001101"/>
+<status status="NOT RUN" start="2025-05-08T19:06:03.699630" elapsed="0.002066"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:16.948216" elapsed="0.001227"/>
+<status status="PASS" start="2025-05-08T19:06:03.699541" elapsed="0.002207"/>
 </if>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:16.951652" level="INFO">${timestamp} = 2025-05-08 18:52:16</msg>
+<msg time="2025-05-08T19:06:03.704404" level="INFO">${timestamp} = 2025-05-08 19:06:03</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.951048" elapsed="0.000674"/>
+<status status="PASS" start="2025-05-08T19:06:03.703783" elapsed="0.000741"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:16.952258" level="INFO">${log_entry} = [2025-05-08 18:52:16] AppleScript激活微信窗口结果: </msg>
+<msg time="2025-05-08T19:06:03.705314" level="INFO">${log_entry} = [2025-05-08 19:06:03] AppleScript激活微信窗口结果: </msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.951960" elapsed="0.000338"/>
+<status status="PASS" start="2025-05-08T19:06:03.704828" elapsed="0.000543"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:16.952961" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:03.706651" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.952439" elapsed="0.000601"/>
+<status status="PASS" start="2025-05-08T19:06:03.705658" elapsed="0.001119"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.953175" elapsed="0.000234"/>
+<status status="PASS" start="2025-05-08T19:06:03.707004" elapsed="0.000418"/>
 </kw>
 <arg>AppleScript激活微信窗口结果: ${result1.stdout}</arg>
-<status status="PASS" start="2025-05-08T18:52:16.949691" elapsed="0.003804"/>
+<status status="PASS" start="2025-05-08T19:06:03.702098" elapsed="0.005547"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-05-08T18:52:17.954650" level="INFO">Slept 1 second.</msg>
+<msg time="2025-05-08T19:06:04.708275" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.953698" elapsed="1.001069"/>
+<status status="PASS" start="2025-05-08T19:06:03.707921" elapsed="1.000470"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:17.955578" level="INFO">${timestamp} = 2025-05-08 18:52:17</msg>
+<msg time="2025-05-08T19:06:04.709201" level="INFO">${timestamp} = 2025-05-08 19:06:04</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.955335" elapsed="0.000282"/>
+<status status="PASS" start="2025-05-08T19:06:04.708962" elapsed="0.000276"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:17.955984" level="INFO">${log_entry} = [2025-05-08 18:52:17] 步骤2: 等待窗口激活完成</msg>
+<msg time="2025-05-08T19:06:04.709616" level="INFO">${log_entry} = [2025-05-08 19:06:04] 步骤2: 等待窗口激活完成</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.955738" elapsed="0.000282"/>
+<status status="PASS" start="2025-05-08T19:06:04.709352" elapsed="0.000299"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:17.956569" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:04.710234" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.956139" elapsed="0.000501"/>
+<status status="PASS" start="2025-05-08T19:06:04.709767" elapsed="0.000551"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.956766" elapsed="0.000191"/>
+<status status="PASS" start="2025-05-08T19:06:04.710480" elapsed="0.000218"/>
 </kw>
 <arg>步骤2: 等待窗口激活完成</arg>
-<status status="PASS" start="2025-05-08T18:52:17.954982" elapsed="0.002050"/>
+<status status="PASS" start="2025-05-08T19:06:04.708606" elapsed="0.002201"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:17.957751" level="INFO">${timestamp} = 2025-05-08 18:52:17</msg>
+<msg time="2025-05-08T19:06:04.711867" level="INFO">${timestamp} = 2025-05-08 19:06:04</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.957527" elapsed="0.000258"/>
+<status status="PASS" start="2025-05-08T19:06:04.711618" elapsed="0.000285"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:17.958148" level="INFO">${log_entry} = [2025-05-08 18:52:17] 步骤3: 使用预创建脚本搜索联系人 "文件传输助手"</msg>
+<msg time="2025-05-08T19:06:04.712278" level="INFO">${log_entry} = [2025-05-08 19:06:04] 步骤3: 使用预创建脚本搜索联系人 "文件传输助手"</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.957905" elapsed="0.000282"/>
+<status status="PASS" start="2025-05-08T19:06:04.712029" elapsed="0.000288"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:17.958669" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:04.712798" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.958304" elapsed="0.000444"/>
+<status status="PASS" start="2025-05-08T19:06:04.712435" elapsed="0.000444"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.958894" elapsed="0.000187"/>
+<status status="PASS" start="2025-05-08T19:06:04.713002" elapsed="0.000183"/>
 </kw>
 <arg>步骤3: 使用预创建脚本搜索联系人 "${target_contact}"</arg>
-<status status="PASS" start="2025-05-08T18:52:17.957190" elapsed="0.001970"/>
+<status status="PASS" start="2025-05-08T19:06:04.711070" elapsed="0.002203"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:17.959597" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:04.713752" level="INFO">Starting process:
 osascript /Users/zzy/hope/rpa/scripts/wechat/search_contact.applescript 文件传输助手</msg>
-<msg time="2025-05-08T18:52:17.966014" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:23.525738" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:23.526136" level="INFO">${result2} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:04.719948" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:10.294691" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:10.295107" level="INFO">${result2} = &lt;result object with rc 0&gt;</msg>
 <var>${result2}</var>
 <arg>osascript</arg>
 <arg>${SCRIPTS_DIR}/search_contact.applescript</arg>
 <arg>${target_contact}</arg>
 <arg>stderr=STDOUT</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:17.959286" elapsed="5.566904"/>
+<status status="PASS" start="2025-05-08T19:06:04.713401" elapsed="5.581758"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Should Be Empty" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.527957" level="INFO">Length is 0.</msg>
+<msg time="2025-05-08T19:06:10.297037" level="INFO">Length is 0.</msg>
 <arg>${result2.stderr}</arg>
 <doc>Verifies that the given item is empty.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.527203" elapsed="0.000822"/>
+<status status="PASS" start="2025-05-08T19:06:10.296250" elapsed="0.000873"/>
 </kw>
-<msg time="2025-05-08T18:52:23.528256" level="INFO">${contact_found} = True</msg>
+<msg time="2025-05-08T19:06:10.297356" level="INFO">${contact_found} = True</msg>
 <var>${contact_found}</var>
 <arg>Should Be Empty</arg>
 <arg>${result2.stderr}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.526796" elapsed="0.001493"/>
+<status status="PASS" start="2025-05-08T19:06:10.295702" elapsed="0.001688"/>
 </kw>
 <if>
 <branch type="IF" condition="not ${contact_found}">
 <kw name="记录日志">
 <arg>错误: 搜索联系人失败: ${result2.stderr}</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:23.528848" elapsed="0.000033"/>
+<status status="NOT RUN" start="2025-05-08T19:06:10.297977" elapsed="0.000039"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>\n错误: 无法搜索或找到联系人 "${target_contact}"\n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:23.529018" elapsed="0.000027"/>
+<status status="NOT RUN" start="2025-05-08T19:06:10.298157" elapsed="0.000028"/>
 </kw>
 <return>
 <value>${False}</value>
-<status status="NOT RUN" start="2025-05-08T18:52:23.529115" elapsed="0.000029"/>
+<status status="NOT RUN" start="2025-05-08T19:06:10.298263" elapsed="0.000031"/>
 </return>
-<status status="NOT RUN" start="2025-05-08T18:52:23.528453" elapsed="0.000730"/>
+<status status="NOT RUN" start="2025-05-08T19:06:10.297566" elapsed="0.000776"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:23.528398" elapsed="0.000819"/>
+<status status="PASS" start="2025-05-08T19:06:10.297505" elapsed="0.000869"/>
 </if>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:23.530448" level="INFO">${timestamp} = 2025-05-08 18:52:23</msg>
+<msg time="2025-05-08T19:06:10.299630" level="INFO">${timestamp} = 2025-05-08 19:06:10</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.530145" elapsed="0.000338"/>
+<status status="PASS" start="2025-05-08T19:06:10.299321" elapsed="0.000371"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.530862" level="INFO">${log_entry} = [2025-05-08 18:52:23] 搜索联系人脚本执行结果: </msg>
+<msg time="2025-05-08T19:06:10.300089" level="INFO">${log_entry} = [2025-05-08 19:06:10] 搜索联系人脚本执行结果: </msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.530612" elapsed="0.000285"/>
+<status status="PASS" start="2025-05-08T19:06:10.299832" elapsed="0.000293"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:23.531551" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:10.300761" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.531023" elapsed="0.000609"/>
+<status status="PASS" start="2025-05-08T19:06:10.300260" elapsed="0.000581"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.531758" elapsed="0.000222"/>
+<status status="PASS" start="2025-05-08T19:06:10.300970" elapsed="0.000228"/>
 </kw>
 <arg>搜索联系人脚本执行结果: ${result2.stdout}</arg>
-<status status="PASS" start="2025-05-08T18:52:23.529367" elapsed="0.002694"/>
+<status status="PASS" start="2025-05-08T19:06:10.298524" elapsed="0.002754"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.633281" level="INFO">Slept 100 milliseconds.</msg>
+<msg time="2025-05-08T19:06:10.401898" level="INFO">Slept 100 milliseconds.</msg>
 <arg>0.1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.532178" elapsed="0.101230"/>
+<status status="PASS" start="2025-05-08T19:06:10.301401" elapsed="0.100610"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:23.634241" level="INFO">${timestamp} = 2025-05-08 18:52:23</msg>
+<msg time="2025-05-08T19:06:10.402843" level="INFO">${timestamp} = 2025-05-08 19:06:10</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.633977" elapsed="0.000300"/>
+<status status="PASS" start="2025-05-08T19:06:10.402577" elapsed="0.000334"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.634629" level="INFO">${log_entry} = [2025-05-08 18:52:23] 步骤4: 聊天窗口已加载，准备输入消息</msg>
+<msg time="2025-05-08T19:06:10.403267" level="INFO">${log_entry} = [2025-05-08 19:06:10] 步骤4: 聊天窗口已加载，准备输入消息</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.634396" elapsed="0.000268"/>
+<status status="PASS" start="2025-05-08T19:06:10.403033" elapsed="0.000267"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:23.635227" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:10.403798" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.634788" elapsed="0.000513"/>
+<status status="PASS" start="2025-05-08T19:06:10.403415" elapsed="0.000450"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.635428" elapsed="0.000208"/>
+<status status="PASS" start="2025-05-08T19:06:10.403984" elapsed="0.000186"/>
 </kw>
 <arg>步骤4: 聊天窗口已加载，准备输入消息</arg>
-<status status="PASS" start="2025-05-08T18:52:23.633624" elapsed="0.002093"/>
+<status status="PASS" start="2025-05-08T19:06:10.402223" elapsed="0.002020"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:23.636415" level="INFO">${timestamp} = 2025-05-08 18:52:23</msg>
+<msg time="2025-05-08T19:06:10.404861" level="INFO">${timestamp} = 2025-05-08 19:06:10</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.636185" elapsed="0.000266"/>
+<status status="PASS" start="2025-05-08T19:06:10.404656" elapsed="0.000238"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.636807" level="INFO">${log_entry} = [2025-05-08 18:52:23] 检查是否可以使用cliclick工具</msg>
+<msg time="2025-05-08T19:06:10.405220" level="INFO">${log_entry} = [2025-05-08 19:06:10] 检查是否可以使用cliclick工具</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.636572" elapsed="0.000271"/>
+<status status="PASS" start="2025-05-08T19:06:10.405005" elapsed="0.000248"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:23.637346" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:10.405675" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.636961" elapsed="0.000456"/>
+<status status="PASS" start="2025-05-08T19:06:10.405363" elapsed="0.000378"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.637548" elapsed="0.000188"/>
+<status status="PASS" start="2025-05-08T19:06:10.405866" elapsed="0.000171"/>
 </kw>
 <arg>检查是否可以使用cliclick工具</arg>
-<status status="PASS" start="2025-05-08T18:52:23.635883" elapsed="0.001926"/>
+<status status="PASS" start="2025-05-08T19:06:10.404388" elapsed="0.001717"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:23.638155" level="INFO">Starting process:
+<msg time="2025-05-08T19:06:10.406428" level="INFO">Starting process:
 which cliclick</msg>
-<msg time="2025-05-08T18:52:23.643475" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:23.653099" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:23.653551" level="INFO">${cliclick_check} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:10.411466" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:10.420448" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:10.420815" level="INFO">${cliclick_check} = &lt;result object with rc 0&gt;</msg>
 <var>${cliclick_check}</var>
 <arg>which cliclick</arg>
 <arg>shell=true</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.637937" elapsed="0.015678"/>
+<status status="PASS" start="2025-05-08T19:06:10.406230" elapsed="0.014633"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Should Not Be Empty" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.655359" level="INFO">Length is 23.</msg>
+<msg time="2025-05-08T19:06:10.422348" level="INFO">Length is 23.</msg>
 <arg>${cliclick_check.stdout}</arg>
 <doc>Verifies that the given item is not empty.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.654580" elapsed="0.000855"/>
+<status status="PASS" start="2025-05-08T19:06:10.421674" elapsed="0.000739"/>
 </kw>
-<msg time="2025-05-08T18:52:23.655557" level="INFO">${has_cliclick} = True</msg>
+<msg time="2025-05-08T19:06:10.422513" level="INFO">${has_cliclick} = True</msg>
 <var>${has_cliclick}</var>
 <arg>Should Not Be Empty</arg>
 <arg>${cliclick_check.stdout}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.654102" elapsed="0.001488"/>
+<status status="PASS" start="2025-05-08T19:06:10.421319" elapsed="0.001224"/>
 </kw>
 <kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.655950" level="INFO">${send_success} = False</msg>
+<msg time="2025-05-08T19:06:10.422854" level="INFO">${send_success} = False</msg>
 <var>${send_success}</var>
 <arg>${False}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.655748" elapsed="0.000235"/>
+<status status="PASS" start="2025-05-08T19:06:10.422676" elapsed="0.000209"/>
 </kw>
 <if>
 <branch type="IF" condition="${has_cliclick}">
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:23.657150" level="INFO">${timestamp} = 2025-05-08 18:52:23</msg>
+<msg time="2025-05-08T19:06:10.423984" level="INFO">${timestamp} = 2025-05-08 19:06:10</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.656848" elapsed="0.000443"/>
+<status status="PASS" start="2025-05-08T19:06:10.423698" elapsed="0.000414"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.657691" level="INFO">${log_entry} = [2025-05-08 18:52:23] 找到cliclick工具，使用增强型cliclick专用脚本发送消息 (使用多种获取焦点方法)</msg>
+<msg time="2025-05-08T19:06:10.424488" level="INFO">${log_entry} = [2025-05-08 19:06:10] 找到cliclick工具，使用增强型cliclick专用脚本发送消息 (使用多种获取焦点方法)</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.657426" elapsed="0.000300"/>
+<status status="PASS" start="2025-05-08T19:06:10.424240" elapsed="0.000282"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:23.658324" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:10.425083" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.657854" elapsed="0.000541"/>
+<status status="PASS" start="2025-05-08T19:06:10.424643" elapsed="0.000507"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.658534" elapsed="0.000221"/>
+<status status="PASS" start="2025-05-08T19:06:10.425284" elapsed="0.000218"/>
 </kw>
 <arg>找到cliclick工具，使用增强型cliclick专用脚本发送消息 (使用多种获取焦点方法)</arg>
-<status status="PASS" start="2025-05-08T18:52:23.656473" elapsed="0.002360"/>
+<status status="PASS" start="2025-05-08T19:06:10.423345" elapsed="0.002239"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:23.659625" level="INFO">${timestamp} = 2025-05-08 18:52:23</msg>
+<msg time="2025-05-08T19:06:10.426217" level="INFO">${timestamp} = 2025-05-08 19:06:10</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.659390" elapsed="0.000271"/>
+<status status="PASS" start="2025-05-08T19:06:10.426011" elapsed="0.000240"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:23.660023" level="INFO">${log_entry} = [2025-05-08 18:52:23] 执行增强型焦点获取脚本 (使用多种点击方法和位置，模拟更真实的用户行为)</msg>
+<msg time="2025-05-08T19:06:10.426587" level="INFO">${log_entry} = [2025-05-08 19:06:10] 执行增强型焦点获取脚本 (使用多种点击方法和位置，模拟更真实的用户行为)</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.659785" elapsed="0.000273"/>
+<status status="PASS" start="2025-05-08T19:06:10.426368" elapsed="0.000252"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:23.660560" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:10.427087" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.660181" elapsed="0.000450"/>
+<status status="PASS" start="2025-05-08T19:06:10.426733" elapsed="0.000427"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.660755" elapsed="0.000190"/>
+<status status="PASS" start="2025-05-08T19:06:10.427279" elapsed="0.000177"/>
 </kw>
 <arg>执行增强型焦点获取脚本 (使用多种点击方法和位置，模拟更真实的用户行为)</arg>
-<status status="PASS" start="2025-05-08T18:52:23.659079" elapsed="0.001948"/>
+<status status="PASS" start="2025-05-08T19:06:10.425737" elapsed="0.001796"/>
 </kw>
 <kw name="Run Process" owner="Process">
-<msg time="2025-05-08T18:52:23.661474" level="INFO">Starting process:
-osascript /Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript 你好，这是测试消息265</msg>
-<msg time="2025-05-08T18:52:23.668104" level="INFO">Waiting for process to complete.</msg>
-<msg time="2025-05-08T18:52:27.866320" level="INFO">Process completed.</msg>
-<msg time="2025-05-08T18:52:27.866783" level="INFO">${result3} = &lt;result object with rc 0&gt;</msg>
+<msg time="2025-05-08T19:06:10.427951" level="INFO">Starting process:
+osascript /Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript 你好，这是测试消息268</msg>
+<msg time="2025-05-08T19:06:10.434100" level="INFO">Waiting for process to complete.</msg>
+<msg time="2025-05-08T19:06:14.467827" level="INFO">Process completed.</msg>
+<msg time="2025-05-08T19:06:14.468308" level="INFO">${result3} = &lt;result object with rc 0&gt;</msg>
 <var>${result3}</var>
 <arg>osascript</arg>
 <arg>${SCRIPTS_DIR}/cliclick_focus_send.applescript</arg>
 <arg>${custom_message}</arg>
 <arg>stderr=STDOUT</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2025-05-08T18:52:23.661157" elapsed="4.205707"/>
+<status status="PASS" start="2025-05-08T19:06:10.427657" elapsed="4.040710"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <kw name="Should Be Empty" owner="BuiltIn">
-<msg time="2025-05-08T18:52:27.868752" level="INFO">Length is 0.</msg>
+<msg time="2025-05-08T19:06:14.470148" level="INFO">Length is 0.</msg>
 <arg>${result3.stderr}</arg>
 <doc>Verifies that the given item is empty.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.867885" elapsed="0.000942"/>
+<status status="PASS" start="2025-05-08T19:06:14.469277" elapsed="0.000945"/>
 </kw>
-<msg time="2025-05-08T18:52:27.868942" level="INFO">${send_success} = True</msg>
+<msg time="2025-05-08T19:06:14.470334" level="INFO">${send_success} = True</msg>
 <var>${send_success}</var>
 <arg>Should Be Empty</arg>
 <arg>${result3.stderr}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.867414" elapsed="0.001562"/>
+<status status="PASS" start="2025-05-08T19:06:14.468908" elapsed="0.001456"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:27.876553" level="INFO">${timestamp} = 2025-05-08 18:52:27</msg>
+<msg time="2025-05-08T19:06:14.476752" level="INFO">${timestamp} = 2025-05-08 19:06:14</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.876071" elapsed="0.000532"/>
+<status status="PASS" start="2025-05-08T19:06:14.476443" elapsed="0.000347"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:27.877106" level="INFO">${log_entry} = [2025-05-08 18:52:27] cliclick专用脚本执行结果: === 脚本开始执行时间: 18:52:23 ===
+<msg time="2025-05-08T19:06:14.477174" level="INFO">${log_entry} = [2025-05-08 19:06:14] cliclick专用脚本执行结果: === 脚本开始执行时间: 19:06:10 ===
 目标应用: 企业微信 (进程名: 企业微信)
 === 脚本执行统计 ===
 目标应用: 企业微信
-开始时间: 18:52:23
-结束时间: 18:52:27
+开始时间: 19:06:10
+结束时间: 19:06:14
 总执行时间: 0分 4秒 (共4秒)
 ==================</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.876771" elapsed="0.000383"/>
+<status status="PASS" start="2025-05-08T19:06:14.476918" elapsed="0.000294"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:27.877993" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:14.477812" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.877300" elapsed="0.000783"/>
+<status status="PASS" start="2025-05-08T19:06:14.477335" elapsed="0.000548"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.878244" elapsed="0.000262"/>
+<status status="PASS" start="2025-05-08T19:06:14.478013" elapsed="0.000222"/>
 </kw>
 <arg>cliclick专用脚本执行结果: ${result3.stdout}</arg>
-<status status="PASS" start="2025-05-08T18:52:27.869279" elapsed="0.009321"/>
+<status status="PASS" start="2025-05-08T19:06:14.470652" elapsed="0.007667"/>
 </kw>
 <if>
 <branch type="IF" condition="${send_success}">
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:27.879841" level="INFO">${timestamp} = 2025-05-08 18:52:27</msg>
+<msg time="2025-05-08T19:06:14.479142" level="INFO">${timestamp} = 2025-05-08 19:06:14</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.879564" elapsed="0.000319"/>
+<status status="PASS" start="2025-05-08T19:06:14.478930" elapsed="0.000249"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:27.880285" level="INFO">${log_entry} = [2025-05-08 18:52:27] 使用增强型cliclick获取焦点机制后通过AppleScript完成消息发送</msg>
+<msg time="2025-05-08T19:06:14.479613" level="INFO">${log_entry} = [2025-05-08 19:06:14] 使用增强型cliclick获取焦点机制后通过AppleScript完成消息发送</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.880022" elapsed="0.000302"/>
+<status status="PASS" start="2025-05-08T19:06:14.479295" elapsed="0.000358"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:27.880908" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:14.480163" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.880472" elapsed="0.000528"/>
+<status status="PASS" start="2025-05-08T19:06:14.479783" elapsed="0.000450"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.881143" elapsed="0.000222"/>
+<status status="PASS" start="2025-05-08T19:06:14.480358" elapsed="0.000187"/>
 </kw>
 <arg>使用增强型cliclick获取焦点机制后通过AppleScript完成消息发送</arg>
-<status status="PASS" start="2025-05-08T18:52:27.879030" elapsed="0.002518"/>
+<status status="PASS" start="2025-05-08T19:06:14.478658" elapsed="0.002042"/>
 </kw>
 <return>
 <value>${True}</value>
-<status status="PASS" start="2025-05-08T18:52:27.881628" elapsed="0.000103"/>
+<status status="PASS" start="2025-05-08T19:06:14.480769" elapsed="0.000090"/>
 </return>
-<status status="PASS" start="2025-05-08T18:52:27.878743" elapsed="0.003051"/>
+<status status="PASS" start="2025-05-08T19:06:14.478441" elapsed="0.002478"/>
 </branch>
 <branch type="ELSE">
 <kw name="记录日志">
 <arg>警告: 增强型cliclick脚本执行出现错误: ${result3.stderr}</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.882014" elapsed="0.000034"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.481128" elapsed="0.000030"/>
 </kw>
 <kw name="记录日志">
 <arg>尝试使用纯AppleScript方案作为备选</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.882207" elapsed="0.000033"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.481296" elapsed="0.000028"/>
 </kw>
-<status status="NOT RUN" start="2025-05-08T18:52:27.881836" elapsed="0.000448"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.480960" elapsed="0.000402"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:27.878692" elapsed="0.003629"/>
+<status status="PASS" start="2025-05-08T19:06:14.478396" elapsed="0.002997"/>
 </if>
-<status status="PASS" start="2025-05-08T18:52:23.656148" elapsed="4.226242"/>
+<status status="PASS" start="2025-05-08T19:06:10.423039" elapsed="4.058409"/>
 </branch>
 <branch type="ELSE">
 <kw name="记录日志">
 <arg>未找到cliclick工具，使用纯AppleScript方案</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.882587" elapsed="0.000033"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.481617" elapsed="0.000027"/>
 </kw>
-<status status="NOT RUN" start="2025-05-08T18:52:27.882430" elapsed="0.000244"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.481483" elapsed="0.000199"/>
 </branch>
-<status status="PASS" start="2025-05-08T18:52:23.656089" elapsed="4.226620"/>
+<status status="PASS" start="2025-05-08T19:06:10.422980" elapsed="4.058730"/>
 </if>
 <kw name="记录日志">
 <arg>尝试使用纯AppleScript方案发送消息</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.882870" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.481844" elapsed="0.000027"/>
 </kw>
 <kw name="Run Process" owner="Process">
 <var>${result4}</var>
@@ -970,72 +970,72 @@ osascript /Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript 你
 <arg>${custom_message}</arg>
 <arg>stderr=STDOUT</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883042" elapsed="0.000031"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.481992" elapsed="0.000026"/>
 </kw>
 <kw name="Run Keyword And Return Status" owner="BuiltIn">
 <var>${send_success}</var>
 <arg>Should Be Empty</arg>
 <arg>${result4.stderr}</arg>
 <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883248" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482152" elapsed="0.000025"/>
 </kw>
 <if>
 <branch type="IF" condition="${send_success}">
 <kw name="记录日志">
 <arg>纯AppleScript消息发送脚本执行结果: ${result4.stdout}</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883548" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482408" elapsed="0.000027"/>
 </kw>
 <kw name="记录日志">
 <arg>消息发送完成</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883730" elapsed="0.000030"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482564" elapsed="0.000027"/>
 </kw>
 <return>
 <value>${True}</value>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883818" elapsed="0.000024"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482639" elapsed="0.000021"/>
 </return>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883388" elapsed="0.000495"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482270" elapsed="0.000431"/>
 </branch>
 <branch type="ELSE">
 <kw name="记录日志">
 <arg>错误: 所有消息发送方法都失败: ${result4.stderr}</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.884080" elapsed="0.000032"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482859" elapsed="0.000026"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>\n错误: 无法发送消息，请检查微信窗口状态\n</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" start="2025-05-08T18:52:27.884238" elapsed="0.000029"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482994" elapsed="0.000025"/>
 </kw>
 <kw name="记录日志">
 <arg>提示: 如果消息能发送但内容不显示，可能是焦点问题，尝试以下解决方法:</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.884475" elapsed="0.000047"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.483178" elapsed="0.000027"/>
 </kw>
 <kw name="记录日志">
 <arg>1. 确保微信窗口处于前台活动状态</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.884716" elapsed="0.000033"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.483332" elapsed="0.000026"/>
 </kw>
 <kw name="记录日志">
 <arg>2. 检查屏幕分辨率与脚本中的点击坐标匹配</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.884909" elapsed="0.000031"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.483481" elapsed="0.000025"/>
 </kw>
 <kw name="记录日志">
 <arg>3. 尝试使用较慢的执行速度 (使用 --variable SLOW:True 参数运行)</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.885197" elapsed="0.000045"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.483625" elapsed="0.000025"/>
 </kw>
 <kw name="记录日志">
 <arg>4. 手动编辑cliclick_focus_send.applescript，调整点击坐标</arg>
-<status status="NOT RUN" start="2025-05-08T18:52:27.885419" elapsed="0.000034"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.483771" elapsed="0.000025"/>
 </kw>
 <return>
 <value>${False}</value>
-<status status="NOT RUN" start="2025-05-08T18:52:27.885516" elapsed="0.000027"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.483844" elapsed="0.000021"/>
 </return>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883918" elapsed="0.001668"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482732" elapsed="0.001169"/>
 </branch>
-<status status="NOT RUN" start="2025-05-08T18:52:27.883361" elapsed="0.002258"/>
+<status status="NOT RUN" start="2025-05-08T19:06:14.482246" elapsed="0.001682"/>
 </if>
 <arg>${CONTACT}</arg>
 <arg>${MESSAGE}</arg>
-<status status="PASS" start="2025-05-08T18:52:16.713174" elapsed="11.172629"/>
+<status status="PASS" start="2025-05-08T19:06:03.431264" elapsed="11.052816"/>
 </kw>
 <arg>${scripts_ok}</arg>
 <arg>执行基于AppleScript的微信自动化</arg>
@@ -1045,103 +1045,103 @@ osascript /Users/zzy/hope/rpa/scripts/wechat/cliclick_focus_send.applescript 你
 <arg>Log To Console</arg>
 <arg>\n无法执行自动化：预创建的脚本文件缺失或无执行权限\n</arg>
 <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-05-08T18:52:16.712437" elapsed="11.173445"/>
+<status status="PASS" start="2025-05-08T19:06:03.430529" elapsed="11.053625"/>
 </kw>
 <kw name="记录完成信息">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:27.886774" level="INFO">${timestamp} = 2025-05-08 18:52:27</msg>
+<msg time="2025-05-08T19:06:14.485265" level="INFO">${timestamp} = 2025-05-08 19:06:14</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.886510" elapsed="0.000306"/>
+<status status="PASS" start="2025-05-08T19:06:14.485007" elapsed="0.000302"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:27.887628" level="INFO">${timestamp} = 2025-05-08 18:52:27</msg>
+<msg time="2025-05-08T19:06:14.486040" level="INFO">${timestamp} = 2025-05-08 19:06:14</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.887368" elapsed="0.000308"/>
+<status status="PASS" start="2025-05-08T19:06:14.485819" elapsed="0.000261"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:27.888067" level="INFO">${log_entry} = [2025-05-08 18:52:27] 自动化流程完成。结束时间: 2025-05-08 18:52:27</msg>
+<msg time="2025-05-08T19:06:14.486618" level="INFO">${log_entry} = [2025-05-08 19:06:14] 自动化流程完成。结束时间: 2025-05-08 19:06:14</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.887810" elapsed="0.000296"/>
+<status status="PASS" start="2025-05-08T19:06:14.486201" elapsed="0.000458"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:27.888858" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:14.487241" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.888238" elapsed="0.000772"/>
+<status status="PASS" start="2025-05-08T19:06:14.486793" elapsed="0.000602"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.889344" elapsed="0.000281"/>
+<status status="PASS" start="2025-05-08T19:06:14.487554" elapsed="0.000213"/>
 </kw>
 <arg>自动化流程完成。结束时间: ${timestamp}</arg>
-<status status="PASS" start="2025-05-08T18:52:27.886996" elapsed="0.002798"/>
+<status status="PASS" start="2025-05-08T19:06:14.485484" elapsed="0.002362"/>
 </kw>
 <kw name="记录日志">
 <kw name="Get Current Date" owner="DateTime">
-<msg time="2025-05-08T18:52:27.891064" level="INFO">${timestamp} = 2025-05-08 18:52:27</msg>
+<msg time="2025-05-08T19:06:14.488670" level="INFO">${timestamp} = 2025-05-08 19:06:14</msg>
 <var>${timestamp}</var>
 <arg>result_format=%Y-%m-%d %H:%M:%S</arg>
 <doc>Returns current local or UTC time with an optional increment.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.890688" elapsed="0.000476"/>
+<status status="PASS" start="2025-05-08T19:06:14.488310" elapsed="0.000441"/>
 </kw>
 <kw name="Catenate" owner="BuiltIn">
-<msg time="2025-05-08T18:52:27.891840" level="INFO">${log_entry} = [2025-05-08 18:52:27] --------------------------------------------------</msg>
+<msg time="2025-05-08T19:06:14.489173" level="INFO">${log_entry} = [2025-05-08 19:06:14] --------------------------------------------------</msg>
 <var>${log_entry}</var>
 <arg>SEPARATOR=\n</arg>
 <arg>[${timestamp}] ${message}</arg>
 <doc>Catenates the given items together and returns the resulted string.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.891524" elapsed="0.000357"/>
+<status status="PASS" start="2025-05-08T19:06:14.488898" elapsed="0.000310"/>
 </kw>
 <kw name="Append To File" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:27.892581" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
+<msg time="2025-05-08T19:06:14.489808" level="INFO" html="true">Appended to file '&lt;a href="file:///Users/zzy/hope/rpa/wechat_applescript_log.txt"&gt;/Users/zzy/hope/rpa/wechat_applescript_log.txt&lt;/a&gt;'.</msg>
 <arg>${LOG_FILE}</arg>
 <arg>${log_entry}\n</arg>
 <doc>Appends the given content to the specified file.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.892025" elapsed="0.000732"/>
+<status status="PASS" start="2025-05-08T19:06:14.489339" elapsed="0.000661"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${log_entry}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.892909" elapsed="0.000222"/>
+<status status="PASS" start="2025-05-08T19:06:14.490297" elapsed="0.000399"/>
 </kw>
 <arg>--------------------------------------------------</arg>
-<status status="PASS" start="2025-05-08T18:52:27.890196" elapsed="0.003032"/>
+<status status="PASS" start="2025-05-08T19:06:14.488014" elapsed="0.002780"/>
 </kw>
 <kw name="Normalize Path" owner="OperatingSystem">
-<msg time="2025-05-08T18:52:27.893613" level="INFO">${log_path} = /Users/zzy/hope/rpa/wechat_applescript_log.txt</msg>
+<msg time="2025-05-08T19:06:14.491158" level="INFO">${log_path} = /Users/zzy/hope/rpa/wechat_applescript_log.txt</msg>
 <var>${log_path}</var>
 <arg>${LOG_FILE}</arg>
 <doc>Normalizes the given path.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.893391" elapsed="0.000260"/>
+<status status="PASS" start="2025-05-08T19:06:14.490941" elapsed="0.000253"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-05-08T18:52:27.893976" level="INFO">日志文件已保存至: /Users/zzy/hope/rpa/wechat_applescript_log.txt</msg>
+<msg time="2025-05-08T19:06:14.491482" level="INFO">日志文件已保存至: /Users/zzy/hope/rpa/wechat_applescript_log.txt</msg>
 <arg>日志文件已保存至: ${log_path}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.893800" elapsed="0.000242"/>
+<status status="PASS" start="2025-05-08T19:06:14.491328" elapsed="0.000214"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>\n日志文件已保存至: ${log_path}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-05-08T18:52:27.894177" elapsed="0.000230"/>
+<status status="PASS" start="2025-05-08T19:06:14.491661" elapsed="0.000197"/>
 </kw>
-<status status="PASS" start="2025-05-08T18:52:27.886176" elapsed="0.008329"/>
+<status status="PASS" start="2025-05-08T19:06:14.484506" elapsed="0.007430"/>
 </kw>
-<status status="PASS" start="2025-05-08T18:52:16.609045" elapsed="11.285834"/>
+<status status="PASS" start="2025-05-08T19:06:03.334327" elapsed="11.157777"/>
 </test>
 <doc>微信完整自动化流程 (AppleScript版本)
 自动搜索联系人并发送消息</doc>
-<status status="PASS" start="2025-05-08T18:52:16.540417" elapsed="11.355392"/>
+<status status="PASS" start="2025-05-08T19:06:03.277708" elapsed="11.215056"/>
 </suite>
 <statistics>
 <total>
