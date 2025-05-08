@@ -1,4 +1,0 @@
-  File "/Users/zzy/hope/rpa/get_wechat_coords.py", line 9
-    print(f"{i}...")
-    ^^^^^
-IndentationError: expected an indented block after 'for' statement on line 8
