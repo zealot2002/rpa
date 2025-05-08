@@ -130,18 +130,19 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
     
     ${send_success}=    Set Variable    ${False}
     IF    ${has_cliclick}
-        记录日志    找到cliclick工具，使用cliclick专用脚本发送消息
+        记录日志    找到cliclick工具，使用增强型cliclick专用脚本发送消息 (使用多种获取焦点方法)
         
         # 使用cliclick专用脚本
+        记录日志    执行增强型焦点获取脚本 (使用多种点击方法和位置，模拟更真实的用户行为)
         ${result3}=    Run Process    osascript    ${SCRIPTS_DIR}/cliclick_focus_send.applescript    ${custom_message}    stderr=STDOUT
         ${send_success}=    Run Keyword And Return Status    Should Be Empty    ${result3.stderr}
         
         记录日志    cliclick专用脚本执行结果: ${result3.stdout}
         IF    ${send_success}
-            记录日志    使用cliclick获取焦点后通过AppleScript完成消息发送
+            记录日志    使用增强型cliclick获取焦点机制后通过AppleScript完成消息发送
             RETURN    ${True}
         ELSE
-            记录日志    警告: cliclick专用脚本执行出现错误: ${result3.stderr}
+            记录日志    警告: 增强型cliclick脚本执行出现错误: ${result3.stderr}
             记录日志    尝试使用纯AppleScript方案作为备选
         END
     ELSE
@@ -149,6 +150,7 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
     END
     
     # 使用纯AppleScript方案 - 使用预创建的脚本
+    记录日志    尝试使用纯AppleScript方案发送消息
     ${result4}=    Run Process    osascript    ${SCRIPTS_DIR}/send_message.applescript    ${custom_message}    stderr=STDOUT
     ${send_success}=    Run Keyword And Return Status    Should Be Empty    ${result4.stderr}
     
@@ -159,6 +161,11 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
     ELSE
         记录日志    错误: 所有消息发送方法都失败: ${result4.stderr}
         Log To Console    \n错误: 无法发送消息，请检查微信窗口状态\n
+        记录日志    提示: 如果消息能发送但内容不显示，可能是焦点问题，尝试以下解决方法:
+        记录日志    1. 确保微信窗口处于前台活动状态
+        记录日志    2. 检查屏幕分辨率与脚本中的点击坐标匹配
+        记录日志    3. 尝试使用较慢的执行速度 (使用 --variable SLOW:True 参数运行)
+        记录日志    4. 手动编辑cliclick_focus_send.applescript，调整点击坐标
         RETURN    ${False}
     END
 
