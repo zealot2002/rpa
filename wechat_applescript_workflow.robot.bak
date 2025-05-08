@@ -123,27 +123,27 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
     Sleep    3s
     记录日志    步骤4: 聊天窗口已加载，准备输入消息
 
-    # 检查是否安装了cliclick工具，优先使用它
+    # 检查是否安装了cliclick工具，优先使用cliclick
     记录日志    检查是否可以使用cliclick工具
     ${cliclick_check}=    Run Process    which cliclick    shell=true
     ${has_cliclick}=    Run Keyword And Return Status    Should Not Be Empty    ${cliclick_check.stdout}
     
     ${send_success}=    Set Variable    ${False}
     IF    ${has_cliclick}
-        记录日志    找到cliclick工具，使用增强型点击脚本发送消息
+        记录日志    找到cliclick工具，使用增强型cliclick专用脚本发送消息 (使用多种获取焦点方法)
         
-        # 直接使用预创建的增强型cliclick焦点获取脚本 - 无需生成临时文件
-        记录日志    执行增强型焦点获取脚本 (使用多种点击方法和位置，模拟真实用户行为)
+        # 使用cliclick专用脚本
+        记录日志    执行增强型焦点获取脚本 (使用多种点击方法和位置，模拟更真实的用户行为)
         ${result3}=    Run Process    osascript    ${SCRIPTS_DIR}/cliclick_focus_send.applescript    ${custom_message}    stderr=STDOUT
         ${send_success}=    Run Keyword And Return Status    Should Be Empty    ${result3.stderr}
         
-        记录日志    增强型焦点获取脚本执行结果: ${result3.stdout}
+        记录日志    cliclick专用脚本执行结果: ${result3.stdout}
         IF    ${send_success}
-            记录日志    使用增强型焦点获取方法成功发送消息
+            记录日志    使用增强型cliclick获取焦点机制后通过AppleScript完成消息发送
             RETURN    ${True}
         ELSE
-            记录日志    警告: 增强型焦点获取脚本执行出现错误: ${result3.stderr}
-            记录日志    尝试使用标准AppleScript方案作为备选
+            记录日志    警告: 增强型cliclick脚本执行出现错误: ${result3.stderr}
+            记录日志    尝试使用纯AppleScript方案作为备选
         END
     ELSE
         记录日志    未找到cliclick工具，使用纯AppleScript方案
@@ -165,7 +165,7 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
         记录日志    1. 确保微信窗口处于前台活动状态
         记录日志    2. 检查屏幕分辨率与脚本中的点击坐标匹配
         记录日志    3. 尝试使用较慢的执行速度 (使用 --variable SLOW:True 参数运行)
-        记录日志    4. 手动修改cliclick_focus_send.applescript脚本中的点击策略
+        记录日志    4. 手动编辑cliclick_focus_send.applescript，调整点击坐标
         RETURN    ${False}
     END
 
@@ -181,4 +181,4 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
     # 显示日志文件位置
     ${log_path}=    Normalize Path    ${LOG_FILE}
     Log    日志文件已保存至: ${log_path}
-    Log To Console    \n日志文件已保存至: ${log_path}
+    Log To Console    \n日志文件已保存至: ${log_path} 
