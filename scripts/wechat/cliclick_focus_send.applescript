@@ -7,18 +7,13 @@ on run argv
     -- 获取消息文本
     set message_text to item 1 of argv
     
-    -- 读取配置文件，获取目标应用信息
-    set config_path to ((do shell script "dirname " & (POSIX path of (path to me))) & "/app_config.json")
-    set config_json to do shell script "cat " & quoted form of config_path
-    
-    -- 使用jq解析JSON获取激活的应用（确保系统已安装jq）
-    set active_app to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.active_app'"
-    set app_name to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".app_name'"
-    set process_name to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".process_name'"
-    set dock_name to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".dock_name'"
-    set input_x_offset to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".input_x_offset'"
-    set input_y_offset to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".input_y_offset'"
-    set helper_process to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".helper_process'"
+    -- 直接设置企业微信应用信息
+    set app_name to "企业微信"
+    set process_name to "企业微信"
+    set dock_name to "企业微信"
+    set input_x_offset to 150
+    set input_y_offset to 40
+    set helper_process to "企业微信 Helper"
     
     log "目标应用: " & app_name & " (进程名: " & process_name & ")"
     
