@@ -1,0 +1,62 @@
+[2025-05-08 14:50:48] 步骤1: 使用AppleScript激活微信窗口
+[2025-05-08 14:50:48] 联系人: "文件传输助手"
+[2025-05-08 14:50:48] 将发送的消息内容: "1"
+[2025-05-08 14:50:48] AppleScript激活微信窗口结果: 
+[2025-05-08 14:50:49] 步骤2: 等待窗口激活完成
+[2025-05-08 14:50:50] 当前聊天窗口检查: 当前窗口标题: 微信 (聊天)
+检查UI元素: 账户头像
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: 朋友圈
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+检查UI元素: missing value
+窗口标题: 微信 (聊天), 是否找到联系人: false
+[2025-05-08 14:50:50] 初始化窗口检查状态: is_correct_window = False
+[2025-05-08 14:50:50] 窗口联系人检查结果: status = False, 寻找的联系人: "文件传输助手"
+[2025-05-08 14:50:50] 最终窗口检查状态: is_correct_window = False
+[2025-05-08 14:50:50] 需要搜索联系人: 当前窗口不是目标联系人窗口
+[2025-05-08 14:50:50] 开始搜索联系人: "文件传输助手"
+[2025-05-08 14:50:50] 打开搜索框结果: 
+[2025-05-08 14:50:51] 将联系人名称复制到剪贴板: 
+[2025-05-08 14:50:51] 粘贴联系人名称结果: 
+[2025-05-08 14:50:52] 等待搜索结果...
+[2025-05-08 14:50:52] 选择联系人结果: 
+[2025-05-08 14:50:53] 聊天窗口加载完成
+[2025-05-08 14:50:54] 步骤3: 聊天窗口已准备就绪
+[2025-05-08 14:50:59] 确保输入框获得焦点: text area 文件传输助手 of scroll area 2 of splitter group 1 of splitter group 1 of window 微信 (聊天) of application process WeChat
+[2025-05-08 14:51:00] 步骤4: 准备输入消息文本
+[2025-05-08 14:51:00] 将消息复制到剪贴板: 
+[2025-05-08 14:51:00] 粘贴消息文本结果: 
+[2025-05-08 14:51:00] 步骤5: 按回车键发送消息
+[2025-05-08 14:51:00] 发送消息结果: 
+[2025-05-08 14:51:00] 步骤6: 执行备用综合自动化脚本
+[2025-05-08 14:51:00] 创建了综合自动化AppleScript文件
+[2025-05-08 14:51:10] 综合自动化脚本执行结果: DEBUG: 当前窗口标题: 微信 (聊天)
+DEBUG: 目标联系人: 文件传输助手
+DEBUG: 检查UI元素: 账户头像
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: 朋友圈
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 检查UI元素: missing value
+DEBUG: 是否在目标窗口: false
+DEBUG: 需要搜索联系人
+[2025-05-08 14:51:10] 综合自动化脚本错误输出: 
+[2025-05-08 14:51:10] 自动化流程完成。结束时间: 2025-05-08 14:51:10
+[2025-05-08 14:51:10] --------------------------------------------------
