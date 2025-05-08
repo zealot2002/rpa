@@ -120,7 +120,7 @@ ${SCRIPTS_DIR}    ${CURDIR}/scripts/wechat    # 预先创建的脚本目录
     记录日志    搜索联系人脚本执行结果: ${result2.stdout}
     
     # 等待聊天窗口加载完成
-    Sleep    3s
+    Sleep    0.1s
     记录日志    步骤4: 聊天窗口已加载，准备输入消息
 
     # 检查是否安装了cliclick工具，优先使用cliclick

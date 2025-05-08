@@ -1,11 +1,11 @@
 on run argv
     set message_text to item 1 of argv
     
-    tell application "WeChat" to activate
+    tell application "企业微信" to activate
     delay 0.5
     
     tell application "System Events"
-        tell process "WeChat"
+        tell process "企业微信"
             -- Get coordinates for input area
             set w to window 1
             set p to position of w

@@ -4,27 +4,67 @@ on run argv
     set startTimeString to ((time string of startTime) as string)
     log "=== 脚本开始执行时间: " & startTimeString & " ==="
     
+    -- 获取消息文本
     set message_text to item 1 of argv
     
-    tell application "WeChat" to activate
-    delay 0.2  -- 减少延迟，确保窗口完全激活
+    -- 读取配置文件，获取目标应用信息
+    set config_path to ((do shell script "dirname " & (POSIX path of (path to me))) & "/app_config.json")
+    set config_json to do shell script "cat " & quoted form of config_path
+    
+    -- 使用jq解析JSON获取激活的应用（确保系统已安装jq）
+    set active_app to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.active_app'"
+    set app_name to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".app_name'"
+    set process_name to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".process_name'"
+    set dock_name to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".dock_name'"
+    set input_x_offset to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".input_x_offset'"
+    set input_y_offset to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".input_y_offset'"
+    set helper_process to do shell script "echo " & quoted form of config_json & " | /usr/local/bin/jq -r '.apps." & active_app & ".helper_process'"
+    
+    log "目标应用: " & app_name & " (进程名: " & process_name & ")"
+    
+    -- 特殊处理应用激活，确保即使最小化也能回到前台
+    tell application "System Events"
+        -- 先结束任何可能已经运行但卡住的Helper进程
+        try
+            do shell script "killall '" & helper_process & "' 2>/dev/null || true"
+        end try
+        delay 0.1
+    end tell
+    
+    -- 通过多种方式激活应用
+    tell application app_name to activate
+    delay 0.3
+    
+    -- 如果应用窗口被最小化了，尝试点击Dock图标
+    tell application "System Events"
+        try
+            tell process "Dock"
+                click UI element dock_name of list 1
+            end tell
+            delay 0.3
+        end try
+    end tell
+    
+    -- 再次确保应用激活
+    tell application app_name to activate
+    delay 0.3
     
     tell application "System Events"
-        tell process "WeChat"
+        tell process process_name
             -- 获取窗口信息
             set w to window 1
             set p to position of w
             set s to size of w
             
             -- 直接计算右下角输入框区域的坐标
-            set inputX to (item 1 of p) + (item 1 of s) - 150  -- 右侧偏左约150像素
-            set inputY to (item 2 of p) + (item 2 of s) - 40   -- 底部上方约40像素
+            set inputX to (item 1 of p) + (item 1 of s) - (input_x_offset as integer)
+            set inputY to (item 2 of p) + (item 2 of s) - (input_y_offset as integer)
             
         end tell
     end tell
     
     tell application "System Events"
-        tell process "WeChat"
+        tell process process_name
             -- 先按Escape确保没有弹出菜单干扰
             key code 53  -- Esc键
             delay 0.1
@@ -56,7 +96,7 @@ on run argv
             delay 0.3
             
             -- 发送消息
-            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 5. 发送消息' >> /tmp/wechat_focus_debug.log"
+            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 5. 发送消息 (应用: " & app_name & ")' >> /tmp/wechat_focus_debug.log"
             keystroke return
             delay 0.1
             
@@ -82,6 +122,7 @@ on run argv
     
     -- 打印执行时间统计到控制台
     log "=== 脚本执行统计 ==="
+    log "目标应用: " & app_name
     log "开始时间: " & startTimeString
     log "结束时间: " & endTimeString
     log "总执行时间: " & executionMinutes & "分 " & remainingSeconds & "秒 (共" & executionSeconds & "秒)"

@@ -1,1 +1,1 @@
-tell application "WeChat" to activate
+tell application "企业微信" to activate
