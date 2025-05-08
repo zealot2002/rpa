@@ -2,7 +2,7 @@ on run argv
     set message_text to item 1 of argv
     
     tell application "WeChat" to activate
-    delay 0.8  -- 减少延迟时间
+    delay 0.8  -- 减少延迟，确保窗口完全激活
     
     -- 记录日志
     do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 开始执行优化版焦点获取脚本' >> /tmp/wechat_focus_debug.log"
@@ -26,7 +26,11 @@ on run argv
     -- 直接点击右下角区域获取焦点
     do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 1. 高效点击右下角区域获取焦点' >> /tmp/wechat_focus_debug.log"
     
-    -- 直接使用双击获取焦点（按下-释放-按下-释放）
+    -- 先点击一次确保窗口处于激活状态
+    do shell script "cliclick c:" & (inputX as integer) & "," & (inputY as integer)
+    delay 0.3
+    
+    -- 使用双击获取焦点（按下-释放-按下-释放）
     do shell script "cliclick dd:" & (inputX as integer) & "," & (inputY as integer)
     delay 0.1
     do shell script "cliclick du:" & (inputX as integer) & "," & (inputY as integer)
@@ -34,7 +38,7 @@ on run argv
     do shell script "cliclick dd:" & (inputX as integer) & "," & (inputY as integer)
     delay 0.1
     do shell script "cliclick du:" & (inputX as integer) & "," & (inputY as integer)
-    delay 0.2
+    delay 0.3
     
     -- 使用拖动操作确保文本框获得焦点（单次有效的拖动比多次点击更可靠）
     do shell script "cliclick dd:" & (inputX as integer) & "," & (inputY as integer)
@@ -42,45 +46,76 @@ on run argv
     do shell script "cliclick m:" & ((inputX + 10) as integer) & "," & (inputY as integer)
     delay 0.1
     do shell script "cliclick du:" & ((inputX + 10) as integer) & "," & (inputY as integer)
-    delay 0.3
+    delay 0.4
     
     tell application "System Events"
         tell process "WeChat"
             -- 使用键盘激活输入区域（保留最有效的部分）
             do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 2. 高效键盘激活' >> /tmp/wechat_focus_debug.log"
             
-            -- 只按一次Tab键
+            -- 先按Escape确保没有弹出菜单干扰
+            key code 53  -- Esc键
+            delay 0.2
+            
+            -- 按一次Tab键
             keystroke tab
-            delay 0.2
+            delay 0.3
             
-            -- 输入并删除字符，快速激活光标
-            keystroke "."
-            delay 0.2
-            keystroke (ASCII character 127)  -- 删除键
-            delay 0.2
+            -- 三次输入删除循环，确保输入区域被激活
+            repeat 2 times
+                -- 输入并删除字符，确保光标激活并闪烁
+                keystroke "."
+                delay 0.2
+                keystroke (ASCII character 127)  -- 删除键
+                delay 0.2
+            end repeat
             
-            -- 清除输入区域
+            -- 点击右键再点击左键，有时可以更可靠地激活输入区域
+            do shell script "cliclick rc:" & (inputX as integer) & "," & (inputY as integer)
+            delay 0.4
+            do shell script "cliclick c:" & (inputX as integer) & "," & (inputY as integer)
+            delay 0.4
+            
+            -- 清除输入区域 - 使用两种方式确保清除成功
+            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 3. 清除并准备粘贴' >> /tmp/wechat_focus_debug.log"
+            
+            -- 方式1: Cmd+A 全选
             keystroke "a" using command down
-            delay 0.2
-            keystroke (ASCII character 127)
+            delay 0.4
+            keystroke (ASCII character 127)  -- 删除键
+            delay 0.4
+            
+            -- 再次确认焦点
+            do shell script "cliclick c:" & (inputX as integer) & "," & (inputY as integer)
             delay 0.3
             
             -- 设置剪贴板内容并粘贴
-            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 3. 粘贴消息内容' >> /tmp/wechat_focus_debug.log"
-            set the clipboard to message_text
-            delay 0.3
+            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 4. 粘贴消息内容' >> /tmp/wechat_focus_debug.log"
             
-            keystroke "v" using command down
+            -- 先通过命令行设置剪贴板内容（更可靠）
+            do shell script "echo '" & message_text & "' | pbcopy"
             delay 0.5
             
-            -- 最后确认一次焦点并发送
+            -- 粘贴尝试1：使用AppleScript的剪贴板
+            set the clipboard to message_text
+            delay 0.5
+            
+            -- 粘贴尝试2：粘贴命令
+            keystroke "v" using command down
+            delay 0.8  -- 增加延迟确保粘贴完成
+            
+            -- 再次点击确保焦点，防止粘贴后焦点丢失
             do shell script "cliclick c:" & (inputX as integer) & "," & (inputY as integer)
-            delay 0.2
+            delay 0.3
             
             -- 发送消息
-            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 4. 发送消息' >> /tmp/wechat_focus_debug.log"
+            do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 5. 发送消息' >> /tmp/wechat_focus_debug.log"
             keystroke return
             delay 0.3
+            
+            -- 确保发送成功（有时第一次return可能无效）
+            keystroke return
+            delay 0.2
             
             -- 记录完成
             do shell script "echo '[$(date +\"%Y-%m-%d %H:%M:%S\")] 脚本执行完成' >> /tmp/wechat_focus_debug.log"
